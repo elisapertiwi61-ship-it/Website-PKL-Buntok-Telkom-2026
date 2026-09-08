@@ -1,0 +1,2113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dokumentasi PKL 2026</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    color:#222;
+    line-height:1.6;
+    background:
+        radial-gradient(circle at 10% 20%,rgba(30,136,229,.12),transparent 25%),
+        radial-gradient(circle at 90% 40%,rgba(13,71,161,.10),transparent 25%),
+        #fefefe;
+    overflow-x:hidden;
+}
+
+/* ==============================
+   PARTIKEL BACKGROUND
+============================== */
+
+.particle{
+    position:fixed;
+    width:6px;
+    height:6px;
+    background:#42a5f5;
+    border-radius:50%;
+    opacity:.25;
+    pointer-events:none;
+    z-index:-1;
+    animation:particleMove linear infinite;
+}
+
+.particle:nth-child(1){
+    left:10%;
+    top:20%;
+    animation-duration:12s;
+}
+
+.particle:nth-child(2){
+    left:25%;
+    top:70%;
+    animation-duration:15s;
+}
+
+.particle:nth-child(3){
+    left:45%;
+    top:30%;
+    animation-duration:11s;
+}
+
+.particle:nth-child(4){
+    left:65%;
+    top:80%;
+    animation-duration:14s;
+}
+
+.particle:nth-child(5){
+    left:85%;
+    top:25%;
+    animation-duration:13s;
+}
+
+.particle:nth-child(6){
+    left:90%;
+    top:70%;
+    animation-duration:17s;
+}
+
+/* ==============================
+   NAVBAR
+============================== */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(13,24,174,.95);
+    box-shadow:0 4px 20px rgba(0,0,0,.18);
+    animation:navDown .8s ease;
+    backdrop-filter:blur(10px);
+}
+
+.logo{
+    color:#fff;
+    font-size:21px;
+    font-weight:bold;
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+
+.logo-icon{
+    width:35px;
+    height:35px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,255,255,.15);
+    border-radius:10px;
+    animation:logoFloat 3s ease-in-out infinite;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+}
+
+nav a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:bold;
+    position:relative;
+    transition:.3s;
+}
+
+nav a::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-7px;
+    width:0;
+    height:3px;
+    border-radius:10px;
+    background:#90caf9;
+    transform:translateX(-50%);
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#90caf9;
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+/* ==============================
+   HERO
+============================== */
+
+.hero{
+    min-height:88vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:50px 20px;
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1c0da1,
+            #150c93,
+            #0d47a1,
+            #1565c0
+        );
+
+    background-size:400% 400%;
+
+    animation:
+        heroBackground 10s ease infinite,
+        heroAppear 1s ease;
+}
+
+/* lingkaran dekorasi */
+
+.hero::before{
+    content:"";
+    position:absolute;
+    width:350px;
+    height:350px;
+    border:2px solid rgba(255,255,255,.12);
+    border-radius:50%;
+    left:-150px;
+    top:-100px;
+    animation:circleRotate 12s linear infinite;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    width:450px;
+    height:450px;
+    border:2px solid rgba(255,255,255,.10);
+    border-radius:50%;
+    right:-200px;
+    bottom:-200px;
+    animation:circleRotateReverse 15s linear infinite;
+}
+
+.hero-content{
+    max-width:850px;
+    position:relative;
+    z-index:2;
+}
+
+.status{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 16px;
+    margin-bottom:20px;
+    border-radius:30px;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.2);
+    backdrop-filter:blur(8px);
+    animation:fadeDown 1s ease .2s both;
+}
+
+.status-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#69f0ae;
+    animation:pulse 1.5s infinite;
+}
+
+.hero h1{
+    font-size:50px;
+    margin-bottom:15px;
+    animation:titleReveal 1.2s ease .3s both;
+}
+
+.hero h1 span{
+    color:#90caf9;
+    display:inline-block;
+    animation:textGlow 3s ease-in-out infinite;
+}
+
+.hero p{
+    font-size:19px;
+    animation:fadeUp 1s ease .5s both;
+}
+
+.hero-subtitle{
+    opacity:.9;
+    max-width:700px;
+    margin:10px auto;
+    animation:fadeUp 1s ease .6s both;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:13px 28px;
+    border-radius:30px;
+    background:#fff;
+    color:#0d47a1;
+    text-decoration:none;
+    font-weight:bold;
+    position:relative;
+    overflow:hidden;
+    transition:.3s;
+    animation:fadeUp 1s ease .7s both;
+}
+
+.btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.8),
+        transparent
+    );
+    transition:.6s;
+}
+
+.btn:hover::before{
+    left:100%;
+}
+
+.btn:hover{
+    transform:translateY(-5px) scale(1.05);
+    box-shadow:0 12px 30px rgba(0,0,0,.3);
+}
+
+.hero-stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    max-width:650px;
+    margin:35px auto 0;
+}
+
+.stat{
+    padding:18px;
+    border-radius:15px;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.16);
+    backdrop-filter:blur(5px);
+    transition:.4s;
+    animation:cardAppear .8s ease both;
+}
+
+.stat:nth-child(1){animation-delay:.8s}
+.stat:nth-child(2){animation-delay:.9s}
+.stat:nth-child(3){animation-delay:1s}
+
+.stat:hover{
+    transform:translateY(-10px) scale(1.04);
+    background:rgba(255,255,255,.18);
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.stat-number{
+    display:block;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.stat-label{
+    font-size:13px;
+    opacity:.85;
+}
+
+/* ==============================
+   SECTION
+============================== */
+
+section{
+    max-width:1100px;
+    margin:auto;
+    padding:75px 30px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+    animation:fadeUp .8s ease both;
+}
+
+.section-title h2{
+    font-size:32px;
+    color:#0d47a1;
+    margin-bottom:10px;
+}
+
+.section-line{
+    width:60px;
+    height:4px;
+    border-radius:10px;
+    background:linear-gradient(90deg,#0d47a1,#42a5f5);
+    margin:10px auto 15px;
+    animation:lineGrow 1s ease;
+}
+
+.section-title p{
+    color:#666;
+}
+
+/* ==============================
+   MEMBERS
+============================== */
+
+.members{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.member-card{
+    background:rgba(255,255,255,.94);
+    border-radius:18px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    transition:.5s;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    animation:cardAppear .7s ease both;
+}
+
+.member-card::before{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    background:rgba(66,165,245,.08);
+    border-radius:50%;
+    right:-70px;
+    top:-70px;
+    transition:.5s;
+}
+
+.member-card:hover::before{
+    transform:scale(2);
+}
+
+.member-card:hover{
+    transform:translateY(-12px) scale(1.02);
+    box-shadow:
+        0 15px 35px rgba(13,71,161,.18),
+        0 0 20px rgba(66,165,245,.15);
+}
+
+.member-photo{
+    width:120px;
+    height:120px;
+    margin:auto auto 15px;
+    border-radius:50%;
+    overflow:hidden;
+    border:4px solid #e3f2fd;
+    position:relative;
+    z-index:2;
+    transition:.5s;
+}
+
+.member-card:hover .member-photo{
+    transform:scale(1.1) rotate(3deg);
+    border-color:#90caf9;
+    box-shadow:0 0 0 8px rgba(144,202,249,.15);
+}
+
+.member-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.6s;
+}
+
+.member-card:hover .member-photo img{
+    transform:scale(1.15);
+}
+
+.member-card h3{
+    color:#0d47a1;
+    position:relative;
+    z-index:2;
+}
+
+.member-card p{
+    color:#666;
+    position:relative;
+    z-index:2;
+}
+
+.click-info{
+    display:block;
+    margin-top:10px;
+    font-size:12px;
+    color:#1976d2;
+    font-weight:bold;
+    position:relative;
+    z-index:2;
+    animation:handBounce 2s infinite;
+}
+
+/* ==============================
+   MODAL
+============================== */
+
+.member-modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:2000;
+    background:rgba(0,0,0,.65);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    backdrop-filter:blur(5px);
+}
+
+.member-modal.active{
+    display:flex;
+    animation:modalBackground .3s ease;
+}
+
+.modal-content{
+    width:100%;
+    max-width:450px;
+    background:#fff;
+    border-radius:25px;
+    padding:30px;
+    text-align:center;
+    position:relative;
+    animation:modalOpen .5s cubic-bezier(.17,.67,.35,1.3);
+}
+
+.modal-close{
+    position:absolute;
+    right:18px;
+    top:15px;
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:50%;
+    background:#e3f2fd;
+    color:#0d47a1;
+    font-size:22px;
+    cursor:pointer;
+    transition:.4s;
+}
+
+.modal-close:hover{
+    transform:rotate(180deg) scale(1.1);
+    background:#bbdefb;
+}
+
+.modal-photo{
+    width:150px;
+    height:150px;
+    margin:10px auto 20px;
+    border-radius:50%;
+    overflow:hidden;
+    border:5px solid #e3f2fd;
+    animation:photoPop .6s ease;
+}
+
+.modal-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.modal-content h2{
+    color:#0d47a1;
+}
+
+.modal-role{
+    color:#666;
+    margin-bottom:20px;
+}
+
+.member-data{
+    text-align:left;
+    background:#f5f9ff;
+    border-radius:15px;
+    padding:18px;
+}
+
+.data-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:9px 0;
+    border-bottom:1px solid #dbeafe;
+    animation:fadeRight .4s ease both;
+}
+
+.data-row:last-child{
+    border-bottom:0;
+}
+
+.data-label{
+    font-weight:bold;
+    color:#0d47a1;
+}
+
+.data-value{
+    text-align:right;
+    color:#555;
+}
+
+/* ==============================
+   FILTER
+============================== */
+
+.month-filter{
+    text-align:center;
+    margin:25px 0 35px;
+}
+
+.month-filter select{
+    padding:12px 20px;
+    border:2px solid #0d47a1;
+    border-radius:12px;
+    font-size:16px;
+    color:#0d47a1;
+    background:#fff;
+    cursor:pointer;
+    transition:.4s;
+}
+
+.month-filter select:hover,
+.month-filter select:focus{
+    transform:translateY(-3px);
+    box-shadow:0 8px 20px rgba(13,71,161,.15);
+}
+
+/* ==============================
+   ACTIVITIES
+============================== */
+
+.activities{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.activity-card{
+    background:rgba(255,255,255,.94);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    transition:.5s;
+    animation:cardAppear .7s ease both;
+}
+
+.activity-card:hover{
+    transform:translateY(-12px) scale(1.02);
+    box-shadow:0 18px 35px rgba(13,71,161,.18);
+}
+
+.activity-photo{
+    width:100%;
+    height:200px;
+    overflow:hidden;
+    background:#e3f2fd;
+    position:relative;
+}
+
+.activity-photo::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.35),
+        transparent 50%
+    );
+    opacity:0;
+    transition:.4s;
+}
+
+.activity-card:hover .activity-photo::after{
+    opacity:1;
+}
+
+.activity-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.7s;
+}
+
+.activity-card:hover .activity-photo img{
+    transform:scale(1.12);
+}
+
+.photo-label{
+    position:absolute;
+    left:12px;
+    top:12px;
+    padding:6px 12px;
+    border-radius:20px;
+    background:rgba(13,71,161,.85);
+    color:#fff;
+    font-size:12px;
+    font-weight:bold;
+    z-index:2;
+    animation:labelFloat 2s ease-in-out infinite;
+}
+
+.activity-content{
+    padding:20px;
+}
+
+.activity-month{
+    display:inline-block;
+    padding:5px 12px;
+    margin-bottom:10px;
+    border-radius:20px;
+    background:#e3f2fd;
+    color:#0d47a1;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.activity-content h3{
+    color:#0d47a1;
+    margin-bottom:8px;
+}
+
+.activity-content p{
+    color:#555;
+}
+
+.saved-label{
+    display:inline-block;
+    margin-top:10px;
+    padding:5px 10px;
+    border-radius:15px;
+    background:#e8f5e9;
+    color:#2e7d32;
+    font-size:12px;
+    font-weight:bold;
+    animation:popIn .5s ease;
+}
+
+/* ==============================
+   JOBS
+============================== */
+
+.jobs{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:20px;
+}
+
+.job-card{
+    background:rgba(255,255,255,.94);
+    padding:25px;
+    border-radius:18px;
+    border-left:5px solid #1976d2;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    transition:.5s;
+    animation:cardAppear .7s ease both;
+}
+
+.job-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 35px rgba(13,71,161,.15);
+}
+
+.job-icon{
+    width:45px;
+    height:45px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:12px;
+    background:#e3f2fd;
+    margin-bottom:15px;
+    font-size:22px;
+    transition:.5s;
+}
+
+.job-card:hover .job-icon{
+    transform:rotate(10deg) scale(1.15);
+    box-shadow:0 5px 15px rgba(13,71,161,.15);
+}
+
+.job-card h3{
+    color:#0d47a1;
+    margin-bottom:10px;
+}
+
+/* ==============================
+   INFO
+============================== */
+
+.info-box{
+    background:linear-gradient(135deg,#0d47a1,#1565c0);
+    color:#fff;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    animation:infoAppear .8s ease;
+    transition:.5s;
+    position:relative;
+    overflow:hidden;
+}
+
+.info-box::before{
+    content:"";
+    position:absolute;
+    width:200px;
+    height:200px;
+    border:2px solid rgba(255,255,255,.1);
+    border-radius:50%;
+    right:-80px;
+    top:-80px;
+    animation:circleRotate 10s linear infinite;
+}
+
+.info-box:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 40px rgba(13,71,161,.25);
+}
+
+/* ==============================
+   FOOTER
+============================== */
+
+footer{
+    background:linear-gradient(135deg,#0d47a1,#092f73);
+    color:#fff;
+    text-align:center;
+    padding:30px 20px;
+    position:relative;
+}
+
+footer p{
+    animation:fadeUp .8s ease;
+}
+
+/* ==============================
+   TOP BUTTON
+============================== */
+
+.top-button{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    width:45px;
+    height:45px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:#0d47a1;
+    color:#fff;
+    text-decoration:none;
+    font-size:20px;
+    z-index:999;
+    transition:.4s;
+    animation:topButtonFloat 2s ease-in-out infinite;
+    box-shadow:0 5px 20px rgba(13,71,161,.3);
+}
+
+.top-button:hover{
+    transform:translateY(-7px) scale(1.12);
+}
+
+/* ==============================
+   ANIMATIONS
+============================== */
+
+@keyframes navDown{
+    from{
+        opacity:0;
+        transform:translateY(-100%);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes logoFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-5px);
+    }
+}
+
+@keyframes heroAppear{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+@keyframes heroBackground{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(35px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes fadeDown{
+    from{
+        opacity:0;
+        transform:translateY(-25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes fadeRight{
+    from{
+        opacity:0;
+        transform:translateX(-20px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+@keyframes cardAppear{
+    from{
+        opacity:0;
+        transform:translateY(40px) scale(.94);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:scale(1);
+        box-shadow:0 0 0 0 rgba(105,240,174,.6);
+    }
+    50%{
+        transform:scale(1.3);
+        box-shadow:0 0 0 9px rgba(105,240,174,0);
+    }
+}
+
+@keyframes titleReveal{
+    from{
+        opacity:0;
+        transform:translateY(40px) scale(.9);
+        filter:blur(8px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+        filter:blur(0);
+    }
+}
+
+@keyframes textGlow{
+    0%,100%{
+        text-shadow:0 0 5px rgba(144,202,249,0);
+    }
+    50%{
+        text-shadow:
+            0 0 10px rgba(144,202,249,.7),
+            0 0 25px rgba(144,202,249,.4);
+    }
+}
+
+@keyframes lineGrow{
+    from{width:0}
+    to{width:60px}
+}
+
+@keyframes modalBackground{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+@keyframes modalOpen{
+    from{
+        opacity:0;
+        transform:scale(.75) translateY(50px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
+@keyframes photoPop{
+    from{
+        opacity:0;
+        transform:scale(.5) rotate(-15deg);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) rotate(0);
+    }
+}
+
+@keyframes labelFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-4px)}
+}
+
+@keyframes popIn{
+    from{
+        opacity:0;
+        transform:scale(.6);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+@keyframes infoAppear{
+    from{
+        opacity:0;
+        transform:translateY(40px) scale(.96);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+@keyframes topButtonFloat{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-6px)}
+}
+
+@keyframes handBounce{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-3px)}
+}
+
+@keyframes circleRotate{
+    from{transform:rotate(0deg)}
+    to{transform:rotate(360deg)}
+}
+
+@keyframes circleRotateReverse{
+    from{transform:rotate(360deg)}
+    to{transform:rotate(0deg)}
+}
+
+@keyframes particleMove{
+    0%{
+        transform:translateY(0) translateX(0) scale(1);
+    }
+    25%{
+        transform:translateY(-100px) translateX(40px) scale(1.4);
+    }
+    50%{
+        transform:translateY(-200px) translateX(-30px) scale(.8);
+    }
+    75%{
+        transform:translateY(-100px) translateX(50px) scale(1.2);
+    }
+    100%{
+        transform:translateY(0) translateX(0) scale(1);
+    }
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media(max-width:900px){
+
+    .activities{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:700px){
+
+    nav{
+        flex-direction:column;
+        gap:10px;
+        padding:15px;
+    }
+
+    nav ul{
+        justify-content:center;
+        gap:12px;
+    }
+
+    .hero{
+        min-height:90vh;
+    }
+
+    .hero h1{
+        font-size:34px;
+    }
+
+    .hero-stats{
+        grid-template-columns:1fr;
+        max-width:300px;
+    }
+
+    section{
+        padding:55px 20px;
+    }
+
+}
+
+@media(max-width:500px){
+
+    .activities{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:29px;
+    }
+
+    .section-title h2{
+        font-size:27px;
+    }
+
+    .data-row{
+        flex-direction:column;
+        gap:2px;
+    }
+
+    .data-value{
+        text-align:left;
+    }
+
+    .info-box{
+        padding:30px 20px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PARTIKEL -->
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+<div class="particle"></div>
+
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            📘
+        </div>
+
+        PKL 2026
+
+    </div>
+
+    <ul>
+
+        <li>
+            <a href="#beranda">
+                Beranda
+            </a>
+        </li>
+
+        <li>
+            <a href="#anggota">
+                Anggota
+            </a>
+        </li>
+
+        <li>
+            <a href="#kegiatan">
+                Kegiatan
+            </a>
+        </li>
+
+        <li>
+            <a href="#pekerjaan">
+                Pekerjaan
+            </a>
+        </li>
+
+        <li>
+            <a href="admin.html">
+                Admin
+            </a>
+        </li>
+
+        <li>
+            <a href="#tentang">
+                Tentang
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="beranda">
+
+    <div class="hero-content">
+
+        <div class="status">
+
+            <span class="status-dot"></span>
+
+            PKL 2026 Aktif
+
+        </div>
+
+        <h1>
+            Dokumentasi <span>PKL 2026</span>
+        </h1>
+
+        <p>
+            SMKN 1 Buntok dan SMKN 2 Tamiang
+        </p>
+
+        <p class="hero-subtitle">
+            Dokumentasi kegiatan Praktik Kerja Lapangan selama berada di PT. Telkom Cabang Buntok.
+        </p>
+
+        <a href="#anggota" class="btn">
+            ✨ Lihat Dokumentasi
+        </a>
+
+        <div class="hero-stats">
+
+            <div class="stat">
+
+                <span class="stat-number">
+                    10
+                </span>
+
+                <span class="stat-label">
+                    Anggota PKL
+                </span>
+
+            </div>
+
+            <div class="stat">
+
+                <span id="activityCount" class="stat-number">
+                    6
+                </span>
+
+                <span class="stat-label">
+                    Kegiatan
+                </span>
+
+            </div>
+
+            <div class="stat">
+
+                <span class="stat-number">
+                    4
+                </span>
+
+                <span class="stat-label">
+                    Pekerjaan
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ANGGOTA -->
+
+<section id="anggota">
+
+    <div class="section-title">
+
+        <h2>
+            👥 Anggota PKL
+        </h2>
+
+        <div class="section-line"></div>
+
+        <p>
+            Klik foto anggota untuk melihat data.
+        </p>
+
+    </div>
+
+    <div class="members" id="membersContainer"></div>
+
+</section>
+
+
+<!-- MODAL ANGGOTA -->
+
+<div class="member-modal" id="memberModal">
+
+    <div class="modal-content">
+
+        <button
+            class="modal-close"
+            onclick="closeMember()"
+        >
+            ×
+        </button>
+
+        <div class="modal-photo">
+
+            <img
+                id="modalPhoto"
+                src=""
+                alt="Foto anggota"
+            >
+
+        </div>
+
+        <h2 id="modalName"></h2>
+
+        <p
+            class="modal-role"
+            id="modalSchool"
+        ></p>
+
+        <div class="member-data">
+
+            <div class="data-row">
+
+                <span class="data-label">
+                    👤 Nama
+                </span>
+
+                <span
+                    class="data-value"
+                    id="dataName"
+                ></span>
+
+            </div>
+
+            <div class="data-row">
+
+                <span class="data-label">
+                    🏫 Sekolah
+                </span>
+
+                <span
+                    class="data-value"
+                    id="dataSchool"
+                ></span>
+
+            </div>
+
+            <div class="data-row">
+
+                <span class="data-label">
+                    📚 Kelas
+                </span>
+
+                <span
+                    class="data-value"
+                    id="dataClass"
+                ></span>
+
+            </div>
+
+            <div class="data-row">
+
+                <span class="data-label">
+                    💻 Jurusan
+                </span>
+
+                <span
+                    class="data-value"
+                    id="dataMajor"
+                ></span>
+
+            </div>
+
+            <div class="data-row">
+
+                <span class="data-label">
+                    📅 Tahun
+                </span>
+
+                <span
+                    class="data-value"
+                    id="dataYear"
+                ></span>
+
+            </div>
+
+            <div class="data-row">
+
+                <span class="data-label">
+                    📌 Status
+                </span>
+
+                <span
+                    class="data-value"
+                    id="dataStatus"
+                ></span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- KEGIATAN -->
+
+<section id="kegiatan">
+
+    <div class="section-title">
+
+        <h2>
+            📸 Dokumentasi Kegiatan
+        </h2>
+
+        <div class="section-line"></div>
+
+        <p>
+            Kumpulan kegiatan selama melaksanakan PKL.
+        </p>
+
+        <div class="month-filter">
+
+            <select
+                id="monthFilter"
+                onchange="renderActivities()"
+            >
+
+                <option value="semua">
+                    Semua Bulan
+                </option>
+
+                <option value="juli">
+                    Juli 2026
+                </option>
+
+                <option value="agustus">
+                    Agustus 2026
+                </option>
+
+                <option value="september">
+                    September 2026
+                </option>
+
+                <option value="oktober">
+                    Oktober 2026
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+    <div
+        class="activities"
+        id="activitiesContainer"
+    ></div>
+
+</section>
+
+
+<!-- PEKERJAAN -->
+
+<section id="pekerjaan">
+
+    <div class="section-title">
+
+        <h2>
+            💼 Pekerjaan Selama PKL
+        </h2>
+
+        <div class="section-line"></div>
+
+        <p>
+            Beberapa pekerjaan yang dilakukan selama mengikuti kegiatan PKL.
+        </p>
+
+    </div>
+
+    <div class="jobs">
+
+        <div class="job-card">
+
+            <div class="job-icon">
+                💻
+            </div>
+
+            <h3>
+                Marketing
+            </h3>
+
+            <p>
+                Marketing bertugas mencari pelanggan, menawarkan produk,
+                menjelaskan manfaat dan harga, serta membantu pelanggan
+                memilih layanan yang sesuai kebutuhannya.
+            </p>
+
+        </div>
+
+
+        <div class="job-card">
+
+            <div class="job-icon">
+                🌐
+            </div>
+
+            <h3>
+                Admin
+            </h3>
+
+            <p>
+                Admin bertugas mengelola data dan dokumen serta memastikan
+                pekerjaan administrasi berjalan dengan rapi dan teratur.
+            </p>
+
+        </div>
+
+
+        <div class="job-card">
+
+            <div class="job-icon">
+                📡
+            </div>
+
+            <h3>
+                Provi-Assurance
+            </h3>
+
+            <p>
+                Provi-Assurance bertugas menyediakan, memeriksa, dan
+                memastikan layanan Telkom berjalan dengan baik serta
+                menangani gangguan jika terjadi.
+            </p>
+
+        </div>
+
+
+        <div class="job-card">
+
+            <div class="job-icon">
+                📝
+            </div>
+
+            <h3>
+                Presentasi
+            </h3>
+
+            <p>
+                Presentasi Bahasa Inggris setiap hari Jumat untuk meningkatkan
+                kemampuan public speaking dan kepercayaan diri dalam berbicara
+                di depan umum.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TENTANG -->
+
+<section id="tentang">
+
+    <div class="section-title">
+
+        <h2>
+            ℹ️ Tentang PKL
+        </h2>
+
+        <div class="section-line"></div>
+
+    </div>
+
+    <div class="info-box">
+
+        <h2>
+            Praktik Kerja Lapangan 2026
+        </h2>
+
+        <p>
+            Praktik Kerja Lapangan merupakan kegiatan pembelajaran
+            yang memberikan kesempatan kepada siswa untuk mendapatkan
+            pengalaman langsung di dunia kerja.
+        </p>
+
+        <br>
+
+        <p>
+            Website ini dibuat sebagai media dokumentasi kegiatan,
+            anggota, serta pekerjaan yang dilakukan selama pelaksanaan
+            PKL tahun 2026.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        © 2026 Dokumentasi PKL -
+        SMKN 1 Buntok dan SMKN 2 Tamiang
+    </p>
+
+    <p>
+        Dibuat sebagai dokumentasi kegiatan PKL
+    </p>
+
+</footer>
+
+
+<a
+    href="#beranda"
+    class="top-button"
+>
+    ↑
+</a>
+
+
+<script>
+
+/* ==============================
+   DATA ANGGOTA
+============================== */
+
+const members = [
+
+    {
+        name:"Riski",
+        school:"SMKN 1 Buntok",
+        className:"XI",
+        major:"Rekayasa perangkat lunak (RPL)",
+        year:"2026",
+        status:"Peserta PKL",
+        photo:"img/4ed9295e-9dac-49ad-b899-751fdc6c00fc.jpg"
+    },
+
+    {
+        name:"Putri",
+        school:"SMKN 1 Buntok",
+        className:"XI",
+        major:"Bisnis digital (BD)",
+        year:"2026",
+        status:"Peserta PKL",
+        photo:"img/d27c1d8c-f9d5-406d-b789-48f980b01bb5.jpg"
+    },
+
+    {
+        name:"Elva",
+        school:"SMKN 1 Buntok",
+        className:"XI",
+        major:"Bisnis digital (BD)",
+        year:"2026",
+        status:"Peserta PKL",
+        photo:"img/4922d16f-5ae6-4965-9654-a1086d7a4f0d.jpg"
+    },
+
+    {
+        name:"Nadia",
+        school:"SMKN 1 Buntok",
+        className:"XI",
+        major:"Bisnis digital (BD)",
+        year:"2026",
+        status:"Peserta PKL",
+        photo:"img/719baab6-f987-4388-aeeb-1de007803219.jpg"
+    },
+
+    {
+        name:"Raihan",
+        school:"SMKN 1 Buntok",
+        className:"XI",
+        major:"Teknik komputer jaringan (TKJ)",
+        year:"2026",
+        status:"Peserta PKL",
+        photo:"img/159b94e6-d123-4867-ac84-0d49c597c613.jpg"
+    },
+
+    {
+        name:"Aurel",
+        school:"SMKN 2 Tamiang",
+        className:"XI",
+        major:"Teknik komputer jaringan (TKJ)",
+        year:"2026",
+        status:"Peserta PKL",
+        photo:"foto/aurel.jpg"
+    },
+
+    {
+        name:"Yholda",
+        school:"SMKN 2 Tamiang",
+        className:"XI",
+        major:"Teknik komputer jaringan (TKJ)",
+        year:"2026",
+        status:"Peserta PKL",
+        photo:"foto/yholda.jpg"
+    },
+
+    {
+        name:"Silla",
+        school:"SMKN 2 Tamiang",
+        className:"XI",
+        major:"Teknik komputer jaringan (TKJ)",
+        year:"2026",
+        status:"Peserta PKL",
+        photo:"foto/silla.jpg"
+    },
+
+    {
+        name:"Herli",
+        school:"SMKN 2 Tamiang",
+        className:"XI",
+        major:"Teknik komputer jaringan (TKJ)",
+        year:"2026",
+        status:"Peserta PKL",
+        photo:"img/b63d370b-5202-4d64-a222-b0ee0653cfcc.jpg"
+    },
+
+    {
+        name:"Rehan",
+        school:"SMKN 2 Tamiang",
+        className:"XI",
+        major:"Teknik komputer jaringan (TKJ)",
+        year:"2026",
+        status:"Peserta PKL",
+        photo:"img/d75b1d96-b900-49fc-a1a2-3d6f22f47488.jpg"
+    }
+
+];
+
+
+/* ==============================
+   DATA KEGIATAN
+============================== */
+
+const staticActivities = [
+
+    {
+        date:"2026-07-30",
+        title:"Kegiatan",
+        description:"Siswa bagian marketing ke toko-toko menawarkan produk.",
+        image:"img/WhatsApp Image 2026-08-31 at 11.41.38.jpeg"
+    },
+
+    {
+        date:"2026-07-30",
+        title:"Kegiatan",
+        description:"Siswa bagian marketing ke toko-toko menawarkan produk.",
+        image:"img/WhatsApp Image 2026-08-31 at 11.46.50.jpeg"
+    },
+
+    {
+        date:"2026-08-10",
+        title:"Kegiatan",
+        description:"Foto bersama sebelum melakukan pekerjaan.",
+        image:"img/09d03271-ddf2-47d3-9be3-28d864f4f936.jpg"
+    },
+
+    {
+        date:"2026-08-04",
+        title:"Kegiatan",
+        description:"Foto saat sedang menginput data bersama Kak Etika.",
+        image:"img/85834b41-6111-4da2-b72c-43c82279fe0a.jpg"
+    },
+
+    {
+        date:"2026-08-05",
+        title:"Kegiatan",
+        description:"Foto marketing di Kantor Desa Pamait.",
+        image:"img/0834f7e4-ce72-4eb2-b940-6f12aabfbfd0.jpg"
+    },
+
+    {
+        date:"2026-08-05",
+        title:"Kegiatan",
+        description:"Foto siswa marketing menawarkan produk ke toko-toko.",
+        image:"img/c440df26-1eed-46e9-8e25-84e6fd1426c6.jpg"
+    }
+
+];
+
+
+const STORAGE_KEY =
+    "dokumentasiPKL2026_admin";
+
+
+/* ==============================
+   FUNGSI
+============================== */
+
+function formatDate(dateString){
+
+    return new Date(
+        dateString+"T00:00:00"
+    ).toLocaleDateString(
+        "id-ID",
+        {
+            day:"numeric",
+            month:"long",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+function getMonth(dateString){
+
+    return new Date(
+        dateString+"T00:00:00"
+    ).toLocaleDateString(
+        "id-ID",
+        {
+            month:"long"
+        }
+    ).toLowerCase();
+
+}
+
+
+function getSavedActivities(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(STORAGE_KEY)
+        ) || [];
+
+    }catch(e){
+
+        return [];
+
+    }
+
+}
+
+
+function escapeHtml(text){
+
+    const div=document.createElement("div");
+
+    div.textContent=text;
+
+    return div.innerHTML;
+
+}
+
+
+/* ==============================
+   RENDER ANGGOTA
+============================== */
+
+function renderMembers(){
+
+    const container =
+        document.getElementById(
+            "membersContainer"
+        );
+
+    container.innerHTML="";
+
+    members.forEach(
+        (member,index)=>{
+
+            container.innerHTML += `
+
+                <div
+                    class="member-card"
+                    style="animation-delay:${index * 0.1}s"
+                    onclick="showMember(${index})"
+                >
+
+                    <div class="member-photo">
+
+                        <img
+                            src="${member.photo}"
+                            alt="${escapeHtml(member.name)}"
+                        >
+
+                    </div>
+
+                    <h3>
+                        ${escapeHtml(member.name)}
+                    </h3>
+
+                    <p>
+                        Siswa
+                    </p>
+
+                    <span class="click-info">
+                        👆 Klik untuk melihat data
+                    </span>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+}
+
+
+/* ==============================
+   MODAL
+============================== */
+
+function showMember(index){
+
+    const m=members[index];
+
+    document.getElementById(
+        "modalPhoto"
+    ).src=m.photo;
+
+    document.getElementById(
+        "modalName"
+    ).textContent=m.name;
+
+    document.getElementById(
+        "modalSchool"
+    ).textContent=m.school;
+
+    document.getElementById(
+        "dataName"
+    ).textContent=m.name;
+
+    document.getElementById(
+        "dataSchool"
+    ).textContent=m.school;
+
+    document.getElementById(
+        "dataClass"
+    ).textContent=m.className;
+
+    document.getElementById(
+        "dataMajor"
+    ).textContent=m.major;
+
+    document.getElementById(
+        "dataYear"
+    ).textContent=m.year;
+
+    document.getElementById(
+        "dataStatus"
+    ).textContent=m.status;
+
+    document.getElementById(
+        "memberModal"
+    ).classList.add("active");
+
+}
+
+
+function closeMember(){
+
+    document
+    .getElementById("memberModal")
+    .classList.remove("active");
+
+}
+
+
+document
+.getElementById("memberModal")
+.addEventListener(
+    "click",
+    function(e){
+
+        if(e.target===this){
+            closeMember();
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key==="Escape"){
+            closeMember();
+        }
+
+    }
+);
+
+
+/* ==============================
+   RENDER KEGIATAN
+============================== */
+
+function renderActivities(){
+
+    const container =
+        document.getElementById(
+            "activitiesContainer"
+        );
+
+    const selected =
+        document.getElementById(
+            "monthFilter"
+        ).value;
+
+    const all = [
+        ...staticActivities,
+        ...getSavedActivities()
+    ];
+
+    container.innerHTML="";
+
+    let displayedIndex=0;
+
+    all.forEach(
+        (activity,index)=>{
+
+            const month =
+                getMonth(activity.date);
+
+            if(
+                selected!=="semua" &&
+                month!==selected
+            ){
+                return;
+            }
+
+            const saved =
+                index>=staticActivities.length;
+
+            container.innerHTML += `
+
+                <div
+                    class="activity-card"
+                    style="animation-delay:${displayedIndex * 0.12}s"
+                >
+
+                    <div class="activity-photo">
+
+                        <img
+                            src="${activity.image}"
+                            alt="${escapeHtml(activity.title)}"
+                        >
+
+                        <span class="photo-label">
+                            📷 Kegiatan ${index+1}
+                        </span>
+
+                    </div>
+
+                    <div class="activity-content">
+
+                        <span class="activity-month">
+                            ${formatDate(activity.date)}
+                        </span>
+
+                        <h3>
+                            ${escapeHtml(activity.title)}
+                        </h3>
+
+                        <p>
+                            ${escapeHtml(activity.description)}
+                        </p>
+
+                        ${
+                            saved
+                            ?
+                            '<span class="saved-label">✓ Ditambahkan admin</span>'
+                            :
+                            ''
+                        }
+
+                    </div>
+
+                </div>
+
+            `;
+
+            displayedIndex++;
+
+        }
+    );
+
+    document.getElementById(
+        "activityCount"
+    ).textContent=all.length;
+
+}
+
+
+/* ==============================
+   JALANKAN
+============================== */
+
+renderMembers();
+
+renderActivities();
+
+</script>
+
+</body>
+</html>
+```

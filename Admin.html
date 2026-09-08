@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Admin - Dokumentasi PKL 2026</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Arial,sans-serif;
+
+    color:#222;
+
+    line-height:1.6;
+
+    background:
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(30,136,229,.12),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 90% 40%,
+            rgba(13,71,161,.10),
+            transparent 25%
+        ),
+
+        #fefefe;
+
+}
+
+
+nav{
+
+    padding:15px 30px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:rgba(13,24,174,.95);
+
+    box-shadow:
+        0 4px 20px rgba(0,0,0,.18);
+
+}
+
+
+.logo{
+
+    color:#fff;
+
+    font-size:21px;
+
+    font-weight:bold;
+
+    display:flex;
+
+    gap:8px;
+
+    align-items:center;
+
+}
+
+
+.logo-icon{
+
+    width:35px;
+
+    height:35px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(255,255,255,.15);
+
+    border-radius:10px;
+
+}
+
+
+nav a{
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+
+nav a:hover{
+
+    color:#90caf9;
+
+}
+
+
+.admin-section{
+
+    min-height:calc(100vh - 70px);
+
+    padding:70px 20px;
+
+    background:#f5f9ff;
+
+}
+
+
+.section-title{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+
+.section-title h2{
+
+    font-size:32px;
+
+    color:#0d47a1;
+
+    margin-bottom:10px;
+
+}
+
+
+.section-line{
+
+    width:60px;
+
+    height:4px;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0d47a1,
+            #42a5f5
+        );
+
+    margin:10px auto 15px;
+
+}
+
+
+.section-title p{
+
+    color:#666;
+
+}
+
+
+.admin-box{
+
+    max-width:800px;
+
+    margin:auto;
+
+    background:#fff;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.08);
+
+    border:1px solid #dbeafe;
+
+}
+
+
+.admin-box h3{
+
+    text-align:center;
+
+    color:#0d47a1;
+
+    margin-bottom:8px;
+
+}
+
+
+.admin-note{
+
+    text-align:center;
+
+    color:#666;
+
+    margin-bottom:25px;
+
+    font-size:14px;
+
+}
+
+
+.input-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:15px;
+
+}
+
+
+.input-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+
+.input-group.full{
+
+    grid-column:1/-1;
+
+}
+
+
+.input-group label{
+
+    font-weight:bold;
+
+    color:#0d47a1;
+
+}
+
+
+.input-group input,
+.input-group textarea{
+
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid #bbdefb;
+
+    border-radius:10px;
+
+    font:inherit;
+
+    outline:none;
+
+}
+
+
+.input-group input:focus,
+.input-group textarea:focus{
+
+    border-color:#1976d2;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(25,118,210,.1);
+
+}
+
+
+.input-actions{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:20px;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+}
+
+
+.input-btn{
+
+    border:0;
+
+    padding:12px 20px;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    background:#0d47a1;
+
+    color:#fff;
+
+}
+
+
+.input-btn.reset{
+
+    background:#e3f2fd;
+
+    color:#0d47a1;
+
+}
+
+
+.admin-list{
+
+    margin-top:30px;
+
+}
+
+
+.admin-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    align-items:center;
+
+    padding:15px;
+
+    border:1px solid #dbeafe;
+
+    border-radius:12px;
+
+    margin-top:10px;
+
+}
+
+
+.delete-btn{
+
+    border:0;
+
+    padding:8px 12px;
+
+    border-radius:8px;
+
+    background:#ffebee;
+
+    color:#c62828;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+
+.back-btn{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    padding:12px 20px;
+
+    border-radius:10px;
+
+    background:#e3f2fd;
+
+    color:#0d47a1;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+
+@media(max-width:700px){
+
+    nav{
+
+        flex-direction:column;
+
+        gap:10px;
+
+        text-align:center;
+
+    }
+
+
+    .input-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+
+    .input-group.full{
+
+        grid-column:auto;
+
+    }
+
+
+    .admin-item{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+
+    .section-title h2{
+
+        font-size:27px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            📘
+        </div>
+
+        PKL 2026 - ADMIN
+
+    </div>
+
+
+    <a href="index.html">
+        🏠 Kembali ke Website
+    </a>
+
+</nav>
+
+
+<section class="admin-section">
+
+
+    <div class="section-title">
+
+        <h2>
+            🔐 Admin - Input Kegiatan
+        </h2>
+
+        <div class="section-line"></div>
+
+        <p>
+            Bagian ini khusus untuk admin
+            menambahkan dokumentasi kegiatan.
+        </p>
+
+    </div>
+
+
+    <div class="admin-box">
+
+
+        <h3>
+            ➕ Tambah Dokumentasi Kegiatan
+        </h3>
+
+
+        <p class="admin-note">
+            Form input khusus halaman Admin.
+        </p>
+
+
+        <form id="adminActivityForm">
+
+
+            <div class="input-grid">
+
+
+                <div class="input-group">
+
+                    <label for="activityDate">
+                        📅 Tanggal
+                    </label>
+
+                    <input
+                        type="date"
+                        id="activityDate"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="activityTitle">
+                        📝 Judul Kegiatan
+                    </label>
+
+                    <input
+                        type="text"
+                        id="activityTitle"
+                        placeholder="Contoh: Kegiatan Marketing"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group full">
+
+                    <label for="activityDescription">
+                        📄 Deskripsi
+                    </label>
+
+                    <textarea
+                        id="activityDescription"
+                        rows="4"
+                        placeholder="Tuliskan deskripsi kegiatan..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="input-group full">
+
+                    <label for="activityImage">
+                        🖼️ Foto Kegiatan
+                    </label>
+
+                    <input
+                        type="file"
+                        id="activityImage"
+                        accept="image/*"
+                        required
+                    >
+
+                </div>
+
+
+            </div>
+
+
+            <div class="input-actions">
+
+
+                <button
+                    type="submit"
+                    class="input-btn"
+                >
+                    💾 Simpan Kegiatan
+                </button>
+
+
+                <button
+                    type="button"
+                    class="input-btn reset"
+                    onclick="resetAdminForm()"
+                >
+                    ↩ Reset
+                </button>
+
+
+            </div>
+
+
+        </form>
+
+
+        <div class="admin-list">
+
+
+            <h3>
+                📋 Kegiatan Tambahan
+            </h3>
+
+
+            <div id="adminActivityList"></div>
+
+
+        </div>
+
+
+        <div style="text-align:center">
+
+
+            <a
+                href="index.html#kegiatan"
+                class="back-btn"
+            >
+                📸 Lihat Dokumentasi
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<script>
+
+
+const STORAGE_KEY =
+    "dokumentasiPKL2026_admin";
+
+
+function getSavedActivities(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(
+                STORAGE_KEY
+            )
+        ) || [];
+
+    }catch(e){
+
+        return [];
+
+    }
+
+}
+
+
+function saveActivities(data){
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(data)
+    );
+
+}
+
+
+function formatDate(dateString){
+
+    return new Date(
+        dateString+"T00:00:00"
+    ).toLocaleDateString(
+        "id-ID",
+        {
+            day:"numeric",
+            month:"long",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+function escapeHtml(text){
+
+    const div =
+        document.createElement("div");
+
+    div.textContent=text;
+
+    return div.innerHTML;
+
+}
+
+
+function resizeImage(file){
+
+    return new Promise(
+        (resolve,reject)=>{
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload=e=>{
+
+                const img =
+                    new Image();
+
+
+                img.onload=()=>{
+
+                    const max=1200;
+
+                    let width=img.width;
+
+                    let height=img.height;
+
+
+                    if(
+                        width>max ||
+                        height>max
+                    ){
+
+                        const ratio =
+                            Math.min(
+                                max/width,
+                                max/height
+                            );
+
+                        width*=ratio;
+
+                        height*=ratio;
+
+                    }
+
+
+                    const canvas =
+                        document.createElement(
+                            "canvas"
+                        );
+
+
+                    canvas.width=width;
+
+                    canvas.height=height;
+
+
+                    const ctx =
+                        canvas.getContext(
+                            "2d"
+                        );
+
+
+                    ctx.drawImage(
+                        img,
+                        0,
+                        0,
+                        width,
+                        height
+                    );
+
+
+                    resolve(
+                        canvas.toDataURL(
+                            "image/jpeg",
+                            .78
+                        )
+                    );
+
+                };
+
+
+                img.onerror=reject;
+
+                img.src=e.target.result;
+
+            };
+
+
+            reader.onerror=reject;
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+}
+
+
+document
+.getElementById(
+    "adminActivityForm"
+)
+.addEventListener(
+    "submit",
+    async function(e){
+
+        e.preventDefault();
+
+
+        const date =
+            document.getElementById(
+                "activityDate"
+            ).value;
+
+
+        const title =
+            document.getElementById(
+                "activityTitle"
+            ).value.trim();
+
+
+        const description =
+            document.getElementById(
+                "activityDescription"
+            ).value.trim();
+
+
+        const imageInput =
+            document.getElementById(
+                "activityImage"
+            );
+
+
+        if(
+            !date ||
+            !title ||
+            !description ||
+            !imageInput.files.length
+        ){
+
+            alert(
+                "Lengkapi semua data terlebih dahulu."
+            );
+
+            return;
+
+        }
+
+
+        try{
+
+            const image =
+                await resizeImage(
+                    imageInput.files[0]
+                );
+
+
+            const data =
+                getSavedActivities();
+
+
+            data.push({
+
+                date:date,
+
+                title:title,
+
+                description:description,
+
+                image:image
+
+            });
+
+
+            saveActivities(data);
+
+
+            resetAdminForm();
+
+
+            renderAdminList();
+
+
+            alert(
+                "Kegiatan berhasil disimpan!"
+            );
+
+
+        }catch(error){
+
+            alert(
+                "Foto gagal diproses. Silakan coba lagi."
+            );
+
+        }
+
+    }
+);
+
+
+function resetAdminForm(){
+
+    document
+    .getElementById(
+        "adminActivityForm"
+    )
+    .reset();
+
+}
+
+
+function renderAdminList(){
+
+    const container =
+        document.getElementById(
+            "adminActivityList"
+        );
+
+
+    const data =
+        getSavedActivities();
+
+
+    if(!data.length){
+
+        container.innerHTML =
+            '<p style="color:#777;text-align:center;margin-top:15px">Belum ada kegiatan tambahan.</p>';
+
+        return;
+
+    }
+
+
+    container.innerHTML="";
+
+
+    data.forEach(
+        (activity,index)=>{
+
+            container.innerHTML += `
+
+                <div class="admin-item">
+
+                    <div>
+
+                        <strong>
+                            ${escapeHtml(
+                                activity.title
+                            )}
+                        </strong>
+
+                        <br>
+
+                        <small>
+                            ${formatDate(
+                                activity.date
+                            )}
+                        </small>
+
+                    </div>
+
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteActivity(${index})"
+                    >
+                        🗑 Hapus
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+}
+
+
+function deleteActivity(index){
+
+    const data =
+        getSavedActivities();
+
+
+    if(!data[index]) return;
+
+
+    if(
+        confirm(
+            "Yakin ingin menghapus kegiatan ini?"
+        )
+    ){
+
+        data.splice(index,1);
+
+        saveActivities(data);
+
+        renderAdminList();
+
+    }
+
+}
+
+
+renderAdminList();
+
+</script>
+
+
+</body>
+</html>
