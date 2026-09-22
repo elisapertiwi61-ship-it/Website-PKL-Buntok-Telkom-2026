@@ -9,6 +9,8 @@
     content="width=device-width, initial-scale=1.0"
 >
 
+<meta name="color-scheme" content="only light">
+
 <title>Admin - Dokumentasi PKL 2026</title>
 
 <style>
@@ -19,11 +21,22 @@
     box-sizing:border-box;
 }
 
+:root{
+    color-scheme:only light !important;
+    background:#fefefe !important;
+}
+
+html{
+    color-scheme:only light !important;
+    background:#fefefe !important;
+    forced-color-adjust:none !important;
+}
+
 body{
 
     font-family:Arial,sans-serif;
 
-    color:#222;
+    color:#222 !important;
 
     line-height:1.6;
 
@@ -40,10 +53,16 @@ body{
             transparent 25%
         ),
 
-        #fefefe;
+        #fefefe !important;
+
+    forced-color-adjust:none !important;
 
 }
 
+
+/* =========================
+   NAVBAR
+========================= */
 
 nav{
 
@@ -55,7 +74,7 @@ nav{
 
     align-items:center;
 
-    background:rgba(13,24,174,.95);
+    background:rgba(13,24,174,.95) !important;
 
     box-shadow:
         0 4px 20px rgba(0,0,0,.18);
@@ -65,7 +84,7 @@ nav{
 
 .logo{
 
-    color:#fff;
+    color:#fff !important;
 
     font-size:21px;
 
@@ -101,7 +120,7 @@ nav{
 
 nav a{
 
-    color:#fff;
+    color:#fff !important;
 
     text-decoration:none;
 
@@ -112,10 +131,14 @@ nav a{
 
 nav a:hover{
 
-    color:#90caf9;
+    color:#90caf9 !important;
 
 }
 
+
+/* =========================
+   ADMIN SECTION
+========================= */
 
 .admin-section{
 
@@ -123,10 +146,14 @@ nav a:hover{
 
     padding:70px 20px;
 
-    background:#f5f9ff;
+    background:#f5f9ff !important;
 
 }
 
+
+/* =========================
+   JUDUL
+========================= */
 
 .section-title{
 
@@ -141,7 +168,7 @@ nav a:hover{
 
     font-size:32px;
 
-    color:#0d47a1;
+    color:#0d47a1 !important;
 
     margin-bottom:10px;
 
@@ -161,7 +188,7 @@ nav a:hover{
             90deg,
             #0d47a1,
             #42a5f5
-        );
+        ) !important;
 
     margin:10px auto 15px;
 
@@ -170,10 +197,14 @@ nav a:hover{
 
 .section-title p{
 
-    color:#666;
+    color:#666 !important;
 
 }
 
+
+/* =========================
+   ADMIN BOX
+========================= */
 
 .admin-box{
 
@@ -181,7 +212,7 @@ nav a:hover{
 
     margin:auto;
 
-    background:#fff;
+    background:#fff !important;
 
     padding:30px;
 
@@ -199,7 +230,7 @@ nav a:hover{
 
     text-align:center;
 
-    color:#0d47a1;
+    color:#0d47a1 !important;
 
     margin-bottom:8px;
 
@@ -210,7 +241,7 @@ nav a:hover{
 
     text-align:center;
 
-    color:#666;
+    color:#666 !important;
 
     margin-bottom:25px;
 
@@ -218,6 +249,10 @@ nav a:hover{
 
 }
 
+
+/* =========================
+   INPUT
+========================= */
 
 .input-grid{
 
@@ -252,7 +287,7 @@ nav a:hover{
 
     font-weight:bold;
 
-    color:#0d47a1;
+    color:#0d47a1 !important;
 
 }
 
@@ -272,6 +307,10 @@ nav a:hover{
 
     outline:none;
 
+    background:#fff !important;
+
+    color:#222 !important;
+
 }
 
 
@@ -286,6 +325,10 @@ nav a:hover{
 
 }
 
+
+/* =========================
+   BUTTON
+========================= */
 
 .input-actions{
 
@@ -314,21 +357,25 @@ nav a:hover{
 
     cursor:pointer;
 
-    background:#0d47a1;
+    background:#0d47a1 !important;
 
-    color:#fff;
+    color:#fff !important;
 
 }
 
 
 .input-btn.reset{
 
-    background:#e3f2fd;
+    background:#e3f2fd !important;
 
-    color:#0d47a1;
+    color:#0d47a1 !important;
 
 }
 
+
+/* =========================
+   LIST ADMIN
+========================= */
 
 .admin-list{
 
@@ -355,6 +402,24 @@ nav a:hover{
 
     margin-top:10px;
 
+    background:#fff !important;
+
+    color:#222 !important;
+
+}
+
+
+.admin-item strong{
+
+    color:#222 !important;
+
+}
+
+
+.admin-item small{
+
+    color:#666 !important;
+
 }
 
 
@@ -366,9 +431,9 @@ nav a:hover{
 
     border-radius:8px;
 
-    background:#ffebee;
+    background:#ffebee !important;
 
-    color:#c62828;
+    color:#c62828 !important;
 
     font-weight:bold;
 
@@ -376,6 +441,10 @@ nav a:hover{
 
 }
 
+
+/* =========================
+   BACK BUTTON
+========================= */
 
 .back-btn{
 
@@ -387,9 +456,9 @@ nav a:hover{
 
     border-radius:10px;
 
-    background:#e3f2fd;
+    background:#e3f2fd !important;
 
-    color:#0d47a1;
+    color:#0d47a1 !important;
 
     text-decoration:none;
 
@@ -397,6 +466,10 @@ nav a:hover{
 
 }
 
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:700px){
 
@@ -437,6 +510,188 @@ nav a:hover{
     .section-title h2{
 
         font-size:27px;
+
+    }
+
+
+    .admin-box{
+
+        padding:22px;
+
+    }
+
+}
+
+
+/* =========================
+   PAKSA TETAP LIGHT MODE
+   SAAT HP DARK MODE
+========================= */
+
+@media (prefers-color-scheme: dark){
+
+    html,
+    body{
+
+        color-scheme:only light !important;
+
+        background:
+            radial-gradient(
+                circle at 10% 20%,
+                rgba(30,136,229,.12),
+                transparent 25%
+            ),
+
+            radial-gradient(
+                circle at 90% 40%,
+                rgba(13,71,161,.10),
+                transparent 25%
+            ),
+
+            #fefefe !important;
+
+        color:#222 !important;
+
+    }
+
+
+    nav{
+
+        background:rgba(13,24,174,.95) !important;
+
+        color:#fff !important;
+
+    }
+
+
+    .logo,
+    nav a{
+
+        color:#fff !important;
+
+    }
+
+
+    .admin-section{
+
+        background:#f5f9ff !important;
+
+    }
+
+
+    .section-title h2{
+
+        color:#0d47a1 !important;
+
+    }
+
+
+    .section-title p{
+
+        color:#666 !important;
+
+    }
+
+
+    .admin-box{
+
+        background:#fff !important;
+
+        color:#222 !important;
+
+    }
+
+
+    .admin-box h3{
+
+        color:#0d47a1 !important;
+
+    }
+
+
+    .admin-note{
+
+        color:#666 !important;
+
+    }
+
+
+    .input-group label{
+
+        color:#0d47a1 !important;
+
+    }
+
+
+    .input-group input,
+    .input-group textarea{
+
+        background:#fff !important;
+
+        color:#222 !important;
+
+        border-color:#bbdefb !important;
+
+    }
+
+
+    .input-btn{
+
+        background:#0d47a1 !important;
+
+        color:#fff !important;
+
+    }
+
+
+    .input-btn.reset{
+
+        background:#e3f2fd !important;
+
+        color:#0d47a1 !important;
+
+    }
+
+
+    .admin-item{
+
+        background:#fff !important;
+
+        color:#222 !important;
+
+        border-color:#dbeafe !important;
+
+    }
+
+
+    .admin-item strong{
+
+        color:#222 !important;
+
+    }
+
+
+    .admin-item small{
+
+        color:#666 !important;
+
+    }
+
+
+    .delete-btn{
+
+        background:#ffebee !important;
+
+        color:#c62828 !important;
+
+    }
+
+
+    .back-btn{
+
+        background:#e3f2fd !important;
+
+        color:#0d47a1 !important;
 
     }
 
