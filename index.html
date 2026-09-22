@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
 <title>Dokumentasi PKL 2026</title>
 
 <style>
@@ -151,6 +152,42 @@ footer{background:linear-gradient(135deg,#0d47a1,#092f73);color:#fff;text-align:
     .modal-content{max-width:calc(100vw - 28px);padding:25px 15px 20px;max-height:90vh;overflow-y:auto}.modal-photo{width:115px;height:115px}.data-row{flex-direction:column;gap:2px}.data-value{text-align:left}
     .top-button{width:40px;height:40px;right:14px;bottom:14px;font-size:18px}footer{padding:25px 15px}footer p{font-size:12px}
 }
+
+/* Paksa warna website tetap sama seperti tampilan desktop di HP */
+html{
+    color-scheme:light !important;
+    background:#fefefe !important;
+}
+body{
+    background:
+        radial-gradient(circle at 10% 20%,rgba(30,136,229,.12),transparent 25%),
+        radial-gradient(circle at 90% 40%,rgba(13,71,161,.10),transparent 25%),
+        #fefefe !important;
+    color:#222 !important;
+}
+@media(max-width:700px){
+    html{background:#fefefe !important;color-scheme:light !important}
+    body{background:
+        radial-gradient(circle at 10% 20%,rgba(30,136,229,.12),transparent 25%),
+        radial-gradient(circle at 90% 40%,rgba(13,71,161,.10),transparent 25%),
+        #fefefe !important;
+        color:#222 !important;
+    }
+    .member-card,.activity-card,.job-card{background:rgba(255,255,255,.94) !important}
+    .modal-content{background:#fff !important}
+    .member-data{background:#f5f9ff !important}
+    .month-filter select{background:#fff !important;color:#0d47a1 !important}
+    footer{background:linear-gradient(135deg,#0d47a1,#092f73) !important;color:#fff !important}
+}
+@media(max-width:500px){
+    html{background:#fefefe !important;color-scheme:light !important}
+    body{background:
+        radial-gradient(circle at 10% 20%,rgba(30,136,229,.12),transparent 25%),
+        radial-gradient(circle at 90% 40%,rgba(13,71,161,.10),transparent 25%),
+        #fefefe !important;
+    }
+}
+
 </style>
 </head>
 <body>
@@ -216,16 +253,16 @@ footer{background:linear-gradient(135deg,#0d47a1,#092f73);color:#fff;text-align:
 
 <script>
 const members=[
-{name:"Riski",school:"SMKN 1 Buntok",className:"XI",major:"Rekayasa perangkat lunak (RPL)",year:"2026",status:"Peserta PKL",photo:"img/4ed9295e-9dac-49ad-b899-751fdc6c00fc.jpg"},
-{name:"Putri",school:"SMKN 1 Buntok",className:"XI",major:"Bisnis digital (BD)",year:"2026",status:"Peserta PKL",photo:"img/d27c1d8c-f9d5-406d-b789-48f980b01bb5.jpg"},
-{name:"Elva",school:"SMKN 1 Buntok",className:"XI",major:"Bisnis digital (BD)",year:"2026",status:"Peserta PKL",photo:"img/4922d16f-5ae6-4965-9654-a1086d7a4f0d.jpg"},
-{name:"Nadia",school:"SMKN 1 Buntok",className:"XI",major:"Bisnis digital (BD)",year:"2026",status:"Peserta PKL",photo:"img/719baab6-f987-4388-aeeb-1de007803219.jpg"},
-{name:"Raihan",school:"SMKN 1 Buntok",className:"XI",major:"Teknik komputer jaringan (TKJ)",year:"2026",status:"Peserta PKL",photo:"img/159b94e6-d123-4867-ac84-0d49c597c613.jpg"},
-{name:"Aurel",school:"SMKN 2 Tamiang",className:"XI",major:"Teknik komputer jaringan (TKJ)",year:"2026",status:"Peserta PKL",photo:"img/6163661469065613838.jpg"},
-{name:"Yholda",school:"SMKN 2 Tamiang",className:"XI",major:"Teknik komputer jaringan (TKJ)",year:"2026",status:"Peserta PKL",photo:"foto/yholda.jpg"},
-{name:"Silla",school:"SMKN 2 Tamiang",className:"XI",major:"Teknik komputer jaringan (TKJ)",year:"2026",status:"Peserta PKL",photo:"foto/silla.jpg"},
-{name:"Herli",school:"SMKN 2 Tamiang",className:"XI",major:"Teknik komputer jaringan (TKJ)",year:"2026",status:"Peserta PKL",photo:"img/b63d370b-5202-4d64-a222-b0ee0653cfcc.jpg"},
-{name:"Rehan",school:"SMKN 2 Tamiang",className:"XI",major:"Teknik komputer jaringan (TKJ)",year:"2026",status:"Peserta PKL",photo:"img/d75b1d96-b900-49fc-a1a2-3d6f22f47488.jpg"}];
+{name:"Riski",school:"SMKN 1 Buntok",className:"XII",major:"Rekayasa perangkat lunak (RPL)",year:"2026",status:"Peserta PKL",photo:"img/4ed9295e-9dac-49ad-b899-751fdc6c00fc.jpg"},
+{name:"Putri",school:"SMKN 1 Buntok",className:"XII",major:"Bisnis digital (BD)",year:"2026",status:"Peserta PKL",photo:"img/d27c1d8c-f9d5-406d-b789-48f980b01bb5.jpg"},
+{name:"Elva",school:"SMKN 1 Buntok",className:"XII",major:"Bisnis digital (BD)",year:"2026",status:"Peserta PKL",photo:"img/4922d16f-5ae6-4965-9654-a1086d7a4f0d.jpg"},
+{name:"Nadia",school:"SMKN 1 Buntok",className:"XII",major:"Bisnis digital (BD)",year:"2026",status:"Peserta PKL",photo:"img/719baab6-f987-4388-aeeb-1de007803219.jpg"},
+{name:"Raihan",school:"SMKN 1 Buntok",className:"XII",major:"Teknik komputer jaringan (TKJ)",year:"2026",status:"Peserta PKL",photo:"img/159b94e6-d123-4867-ac84-0d49c597c613.jpg"},
+{name:"Aurel",school:"SMKN 2 Tamiang",className:"XII",major:"Teknik komputer jaringan (TKJ)",year:"2026",status:"Peserta PKL",photo:"img/6163661469065613838.jpg"},
+{name:"Yholda",school:"SMKN 2 Tamiang",className:"XII",major:"Teknik komputer jaringan (TKJ)",year:"2026",status:"Peserta PKL",photo:"img/6161121872083358526.jpg"},
+{name:"Silla",school:"SMKN 2 Tamiang",className:"XII",major:"Teknik komputer jaringan (TKJ)",year:"2026",status:"Peserta PKL",photo:"img/6165560037883973884.jpg"},
+{name:"Herli",school:"SMKN 2 Tamiang",className:"XII",major:"Teknik komputer jaringan (TKJ)",year:"2026",status:"Peserta PKL",photo:"img/b63d370b-5202-4d64-a222-b0ee0653cfcc.jpg"},
+{name:"Rehan",school:"SMKN 2 Tamiang",className:"XII",major:"Teknik komputer jaringan (TKJ)",year:"2026",status:"Peserta PKL",photo:"img/d75b1d96-b900-49fc-a1a2-3d6f22f47488.jpg"}];
 
 const staticActivities=[
 {date:"2026-07-30",title:"Kegiatan",description:"Siswa bagian marketing ke toko-toko menawarkan produk.",image:"img/WhatsApp Image 2026-08-31 at 11.41.38.jpeg"},
