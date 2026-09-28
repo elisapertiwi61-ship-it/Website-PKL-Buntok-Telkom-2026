@@ -373,6 +373,15 @@ nav a:hover{
 }
 
 
+.input-btn:disabled{
+
+    opacity:.7;
+
+    cursor:not-allowed;
+
+}
+
+
 /* =========================
    LIST ADMIN
 ========================= */
@@ -438,6 +447,13 @@ nav a:hover{
     font-weight:bold;
 
     cursor:pointer;
+
+}
+
+
+.delete-btn:hover{
+
+    background:#ffcdd2 !important;
 
 }
 
@@ -525,7 +541,6 @@ nav a:hover{
 
 /* =========================
    PAKSA TETAP LIGHT MODE
-   SAAT HP DARK MODE
 ========================= */
 
 @media (prefers-color-scheme: dark){
@@ -859,7 +874,7 @@ nav a:hover{
 
     .logout-btn{
 
-        margin-left:0
+        margin-left:0;
 
     }
 
@@ -1028,8 +1043,6 @@ nav a:hover{
         ></div>
 
 
-        <!-- TOMBOL KEMBALI KE HALAMAN UTAMA -->
-
         <a
             href="index.html"
             class="login-back-btn"
@@ -1094,16 +1107,7 @@ nav a:hover{
 
 <section class="admin-section">
 
-
     <div class="section-title">
-
-        <h2>
-            🔐 Admin - Input Kegiatan
-        </h2>
-
-
-        <div class="section-line"></div>
-
 
         <p>
             Bagian ini khusus untuk admin
@@ -1233,10 +1237,6 @@ nav a:hover{
 
 
 
-        <!-- =========================
-             LIST ADMIN
-        ========================= -->
-
         <div class="admin-list">
 
 
@@ -1275,14 +1275,45 @@ nav a:hover{
 
 
 
+<!-- =========================
+     SUPABASE
+========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
 <script>
+
+
+/* =========================
+   SUPABASE CONFIG
+========================= */
+
+const SUPABASE_URL =
+    "https://zmatklagzcdvtiqdsxkc.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable__xolWDvUI8HbBqydeFuxuQ_UwRkwCyV";
+
+const STORAGE_BUCKET =
+    "foto-kegiatan";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
 
 
 /* =========================
    LOGIN ADMIN
 ========================= */
 
-const ADMIN_PASSWORD = "PKL2026";
+const ADMIN_PASSWORD =
+    "PKL2026";
+
 
 const ADMIN_SESSION_KEY =
     "dokumentasiPKL2026_admin_login";
@@ -1430,7 +1461,8 @@ function loginAdmin(){
             "👁️";
 
 
-        error.textContent = "";
+        error.textContent =
+            "";
 
     }else{
 
@@ -1440,7 +1472,8 @@ function loginAdmin(){
 
         document.getElementById(
             "adminPassword"
-        ).value = "";
+        ).value =
+            "";
 
     }
 
@@ -1497,7 +1530,8 @@ document
     function(e){
 
         if(
-            e.key === "Enter"
+            e.key ===
+            "Enter"
         ){
 
             loginAdmin();
@@ -1510,46 +1544,6 @@ document
 
 
 checkAdminLogin();
-
-
-
-/* =========================
-   LOCAL STORAGE
-========================= */
-
-const STORAGE_KEY =
-    "dokumentasiPKL2026_admin";
-
-
-
-function getSavedActivities(){
-
-    try{
-
-        return JSON.parse(
-            localStorage.getItem(
-                STORAGE_KEY
-            )
-        ) || [];
-
-    }catch(e){
-
-        return [];
-
-    }
-
-}
-
-
-
-function saveActivities(data){
-
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(data)
-    );
-
-}
 
 
 
@@ -1683,11 +1677,29 @@ function resizeImage(file){
                             );
 
 
-                            resolve(
-                                canvas.toDataURL(
-                                    "image/jpeg",
-                                    .78
-                                )
+                            canvas.toBlob(
+                                blob=>{
+
+                                    if(!blob){
+
+                                        reject(
+                                            new Error(
+                                                "Gagal membuat foto"
+                                            )
+                                        );
+
+                                        return;
+
+                                    }
+
+
+                                    resolve(
+                                        blob
+                                    );
+
+                                },
+                                "image/jpeg",
+                                .78
                             );
 
                         };
@@ -1713,6 +1725,52 @@ function resizeImage(file){
 
         }
     );
+
+}
+
+
+
+/* =========================
+   AMBIL DATA DARI SUPABASE
+========================= */
+
+async function getSavedActivities(){
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+        .from("kegiatan")
+        .select("*")
+        .order(
+            "date",
+            {
+                ascending:false
+            }
+        )
+        .order(
+            "created_at",
+            {
+                ascending:false
+            }
+        );
+
+
+    if(error){
+
+        console.error(
+            "Gagal mengambil kegiatan:",
+            error
+        );
+
+
+        return [];
+
+    }
+
+
+    return data || [];
 
 }
 
@@ -1774,52 +1832,202 @@ document
         }
 
 
+        const submitButton =
+            document.querySelector(
+                '#adminActivityForm button[type="submit"]'
+            );
+
+
+        submitButton.disabled =
+            true;
+
+
+        submitButton.textContent =
+            "⏳ Menyimpan...";
+
+
         try{
 
-            const image =
+
+            /* =========================
+               1. RESIZE FOTO
+            ========================= */
+
+            const imageBlob =
                 await resizeImage(
                     imageInput.files[0]
                 );
 
 
-            const data =
-                getSavedActivities();
+
+            /* =========================
+               2. NAMA FILE UNIK
+            ========================= */
+
+            const fileName =
+                Date.now() +
+                "-" +
+                Math.random()
+                    .toString(36)
+                    .substring(2,10) +
+                ".jpg";
 
 
-            data.push({
-
-                date:date,
-
-                title:title,
-
-                description:description,
-
-                image:image
-
-            });
+            const filePath =
+                "kegiatan/" +
+                fileName;
 
 
-            saveActivities(
-                data
-            );
 
+            /* =========================
+               3. UPLOAD FOTO
+            ========================= */
+
+            const {
+                error:uploadError
+            } =
+                await supabaseClient
+                .storage
+                .from(
+                    STORAGE_BUCKET
+                )
+                .upload(
+                    filePath,
+                    imageBlob,
+                    {
+                        contentType:
+                            "image/jpeg",
+
+                        cacheControl:
+                            "3600",
+
+                        upsert:false
+                    }
+                );
+
+
+            if(uploadError){
+
+                console.error(
+                    uploadError
+                );
+
+
+                throw new Error(
+                    "Foto gagal diupload"
+                );
+
+            }
+
+
+
+            /* =========================
+               4. URL FOTO
+            ========================= */
+
+            const {
+                data:publicUrlData
+            } =
+                supabaseClient
+                .storage
+                .from(
+                    STORAGE_BUCKET
+                )
+                .getPublicUrl(
+                    filePath
+                );
+
+
+            const imageUrl =
+                publicUrlData.publicUrl;
+
+
+
+            /* =========================
+               5. SIMPAN KE DATABASE
+            ========================= */
+
+            const {
+                error:databaseError
+            } =
+                await supabaseClient
+                .from("kegiatan")
+                .insert([
+                    {
+                        date:date,
+
+                        title:title,
+
+                        description:description,
+
+                        image:imageUrl
+                    }
+                ]);
+
+
+            if(databaseError){
+
+                console.error(
+                    databaseError
+                );
+
+
+                /* Hapus foto
+                   jika database gagal */
+
+                await supabaseClient
+                    .storage
+                    .from(
+                        STORAGE_BUCKET
+                    )
+                    .remove([
+                        filePath
+                    ]);
+
+
+                throw new Error(
+                    "Data gagal disimpan"
+                );
+
+            }
+
+
+
+            /* =========================
+               6. BERHASIL
+            ========================= */
 
             resetAdminForm();
 
 
-            renderAdminList();
+            await renderAdminList();
 
 
             alert(
-                "Kegiatan berhasil disimpan!"
+                "✅ Kegiatan berhasil disimpan!\n\nData dan foto sudah tersimpan online."
             );
 
 
         }catch(error){
 
-            alert(
-                "Foto gagal diproses. Silakan coba lagi."
+            console.error(
+                error
             );
+
+
+            alert(
+                "❌ Kegiatan gagal disimpan.\n\nPeriksa koneksi internet dan pengaturan Supabase."
+            );
+
+
+        }finally{
+
+            submitButton.disabled =
+                false;
+
+
+            submitButton.textContent =
+                "💾 Simpan Kegiatan";
 
         }
 
@@ -1848,7 +2056,7 @@ function resetAdminForm(){
    TAMPILKAN DATA ADMIN
 ========================= */
 
-function renderAdminList(){
+async function renderAdminList(){
 
     const container =
         document.getElementById(
@@ -1856,13 +2064,15 @@ function renderAdminList(){
         );
 
 
+    container.innerHTML =
+        '<p style="color:#777;text-align:center;margin-top:15px">⏳ Memuat kegiatan...</p>';
+
+
     const data =
-        getSavedActivities();
+        await getSavedActivities();
 
 
-    if(
-        !data.length
-    ){
+    if(!data.length){
 
         container.innerHTML =
             '<p style="color:#777;text-align:center;margin-top:15px">Belum ada kegiatan tambahan.</p>';
@@ -1878,7 +2088,7 @@ function renderAdminList(){
 
 
     data.forEach(
-        (activity,index)=>{
+        activity=>{
 
             container.innerHTML += `
 
@@ -1905,7 +2115,7 @@ function renderAdminList(){
 
                     <button
                         class="delete-btn"
-                        onclick="deleteActivity(${index})"
+                        onclick="deleteActivity('${activity.id}')"
                     >
                         🗑 Hapus
                     </button>
@@ -1922,17 +2132,58 @@ function renderAdminList(){
 
 
 /* =========================
+   AMBIL PATH FOTO
+========================= */
+
+function getStoragePathFromUrl(url){
+
+    if(!url){
+
+        return null;
+
+    }
+
+
+    const marker =
+        "/storage/v1/object/public/" +
+        STORAGE_BUCKET +
+        "/";
+
+
+    const position =
+        url.indexOf(
+            marker
+        );
+
+
+    if(position === -1){
+
+        return null;
+
+    }
+
+
+    return decodeURIComponent(
+        url.substring(
+            position +
+            marker.length
+        )
+    );
+
+}
+
+
+
+/* =========================
    HAPUS KEGIATAN
 ========================= */
 
-function deleteActivity(index){
-
-    const data =
-        getSavedActivities();
-
+async function deleteActivity(id){
 
     if(
-        !data[index]
+        !confirm(
+            "Yakin ingin menghapus kegiatan ini?"
+        )
     ){
 
         return;
@@ -1940,30 +2191,148 @@ function deleteActivity(index){
     }
 
 
-    if(
-        confirm(
-            "Yakin ingin menghapus kegiatan ini?"
-        )
-    ){
+    try{
 
-        data.splice(
-            index,
-            1
+
+        /* =========================
+           1. AMBIL DATA
+        ========================= */
+
+        const {
+            data:activity,
+            error:findError
+        } =
+            await supabaseClient
+            .from("kegiatan")
+            .select("*")
+            .eq(
+                "id",
+                id
+            )
+            .single();
+
+
+        if(findError){
+
+            console.error(
+                findError
+            );
+
+
+            throw new Error(
+                "Data kegiatan tidak ditemukan"
+            );
+
+        }
+
+
+
+        /* =========================
+           2. CARI PATH FOTO
+        ========================= */
+
+        const filePath =
+            getStoragePathFromUrl(
+                activity.image
+            );
+
+
+
+        /* =========================
+           3. HAPUS FOTO
+        ========================= */
+
+        if(filePath){
+
+            const {
+                error:storageError
+            } =
+                await supabaseClient
+                .storage
+                .from(
+                    STORAGE_BUCKET
+                )
+                .remove([
+                    filePath
+                ]);
+
+
+            if(storageError){
+
+                console.warn(
+                    "Foto gagal dihapus:",
+                    storageError
+                );
+
+            }
+
+        }
+
+
+
+        /* =========================
+           4. HAPUS DATABASE
+        ========================= */
+
+        const {
+            error:deleteError
+        } =
+            await supabaseClient
+            .from("kegiatan")
+            .delete()
+            .eq(
+                "id",
+                id
+            );
+
+
+        if(deleteError){
+
+            console.error(
+                deleteError
+            );
+
+
+            throw new Error(
+                "Data gagal dihapus"
+            );
+
+        }
+
+
+
+        /* =========================
+           5. REFRESH LIST
+        ========================= */
+
+        await renderAdminList();
+
+
+        alert(
+            "✅ Kegiatan berhasil dihapus."
         );
 
 
-        saveActivities(
-            data
+    }catch(error){
+
+        console.error(
+            error
         );
 
 
-        renderAdminList();
+        alert(
+            "❌ Kegiatan gagal dihapus."
+        );
 
     }
 
 }
 
 
+
+/* =========================
+   JALANKAN
+========================= */
 
 renderAdminList();
 
