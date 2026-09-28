@@ -697,6 +697,270 @@ nav a:hover{
 
 }
 
+
+/* =========================
+   LOGIN ADMIN
+========================= */
+
+.admin-login{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:9999;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0d47a1,
+            #1976d2
+        );
+
+}
+
+
+.login-box{
+
+    width:100%;
+
+    max-width:400px;
+
+    background:#fff;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.25);
+
+    text-align:center;
+
+}
+
+
+.login-box h2{
+
+    color:#0d47a1;
+
+    margin-bottom:8px;
+
+}
+
+
+.login-box p{
+
+    color:#666;
+
+    margin-bottom:20px;
+
+    font-size:14px;
+
+}
+
+
+.login-box input{
+
+    width:100%;
+
+    padding:13px;
+
+    border:1px solid #bbdefb;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    outline:none;
+
+    margin-bottom:12px;
+
+    text-align:center;
+
+}
+
+
+.login-box input:focus{
+
+    border-color:#1976d2;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(25,118,210,.1);
+
+}
+
+
+.login-btn{
+
+    width:100%;
+
+    border:0;
+
+    padding:13px;
+
+    border-radius:10px;
+
+    background:#0d47a1;
+
+    color:#fff;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+
+.login-error{
+
+    color:#c62828;
+
+    font-size:13px;
+
+    margin-top:10px;
+
+    min-height:20px;
+
+}
+
+
+.logout-btn{
+
+    margin-left:12px;
+
+    padding:8px 12px;
+
+    border:0;
+
+    border-radius:8px;
+
+    background:#fff;
+
+    color:#0d47a1;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+
+@media(max-width:700px){
+
+    .logout-btn{
+
+        margin-left:0
+
+    }
+
+}
+
+
+/* =========================
+   PASSWORD TOGGLE
+========================= */
+
+.login-password-wrap{
+
+    position:relative;
+
+    width:100%;
+
+}
+
+
+.login-password-wrap input{
+
+    width:100%;
+
+    padding-right:48px;
+
+}
+
+
+.password-toggle{
+
+    position:absolute;
+
+    right:10px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    border:0;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+    padding:5px;
+
+    line-height:1;
+
+}
+
+
+.password-toggle:focus{
+
+    outline:2px solid #42a5f5;
+
+    border-radius:6px;
+
+}
+
+
+/* =========================
+   TOMBOL KEMBALI LOGIN
+========================= */
+
+.login-back-btn{
+
+    display:block;
+
+    width:100%;
+
+    margin-top:12px;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    background:#e3f2fd;
+
+    color:#0d47a1 !important;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    transition:.2s;
+
+}
+
+
+.login-back-btn:hover{
+
+    background:#bbdefb;
+
+    transform:translateY(-1px);
+
+}
+
 </style>
 
 </head>
@@ -704,6 +968,84 @@ nav a:hover{
 
 <body>
 
+
+<!-- =========================
+     LOGIN ADMIN
+========================= -->
+
+<div
+    class="admin-login"
+    id="adminLogin"
+>
+
+    <div class="login-box">
+
+        <h2>
+            🔐 Login Admin
+        </h2>
+
+
+        <p>
+            Masukkan sandi untuk membuka halaman admin.
+        </p>
+
+
+        <div class="login-password-wrap">
+
+            <input
+                type="password"
+                id="adminPassword"
+                placeholder="Masukkan sandi"
+                autocomplete="current-password"
+            >
+
+
+            <button
+                type="button"
+                class="password-toggle"
+                id="togglePassword"
+                onclick="togglePasswordVisibility()"
+                aria-label="Tampilkan sandi"
+                title="Tampilkan sandi"
+            >
+                👁️
+            </button>
+
+        </div>
+
+
+        <button
+            class="login-btn"
+            onclick="loginAdmin()"
+        >
+            🔓 Masuk Admin
+        </button>
+
+
+        <div
+            class="login-error"
+            id="loginError"
+        ></div>
+
+
+        <!-- TOMBOL KEMBALI KE HALAMAN UTAMA -->
+
+        <a
+            href="index.html"
+            class="login-back-btn"
+        >
+            🏠 Kembali ke Halaman Utama
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
 
 <nav>
 
@@ -718,12 +1060,37 @@ nav a:hover{
     </div>
 
 
-    <a href="index.html">
-        🏠 Kembali ke Website
-    </a>
+    <div
+        style="
+            display:flex;
+            align-items:center;
+            gap:8px;
+            flex-wrap:wrap;
+            justify-content:center;
+        "
+    >
+
+        <a href="index.html">
+            🏠 Kembali ke Website
+        </a>
+
+
+        <button
+            class="logout-btn"
+            onclick="logoutAdmin()"
+        >
+            🔒 Keluar
+        </button>
+
+    </div>
 
 </nav>
 
+
+
+<!-- =========================
+     ADMIN SECTION
+========================= -->
 
 <section class="admin-section">
 
@@ -734,7 +1101,9 @@ nav a:hover{
             🔐 Admin - Input Kegiatan
         </h2>
 
+
         <div class="section-line"></div>
+
 
         <p>
             Bagian ini khusus untuk admin
@@ -742,6 +1111,7 @@ nav a:hover{
         </p>
 
     </div>
+
 
 
     <div class="admin-box">
@@ -757,6 +1127,7 @@ nav a:hover{
         </p>
 
 
+
         <form id="adminActivityForm">
 
 
@@ -769,6 +1140,7 @@ nav a:hover{
                         📅 Tanggal
                     </label>
 
+
                     <input
                         type="date"
                         id="activityDate"
@@ -778,11 +1150,13 @@ nav a:hover{
                 </div>
 
 
+
                 <div class="input-group">
 
                     <label for="activityTitle">
                         📝 Judul Kegiatan
                     </label>
+
 
                     <input
                         type="text"
@@ -794,11 +1168,13 @@ nav a:hover{
                 </div>
 
 
+
                 <div class="input-group full">
 
                     <label for="activityDescription">
                         📄 Deskripsi
                     </label>
+
 
                     <textarea
                         id="activityDescription"
@@ -810,11 +1186,13 @@ nav a:hover{
                 </div>
 
 
+
                 <div class="input-group full">
 
                     <label for="activityImage">
                         🖼️ Foto Kegiatan
                     </label>
+
 
                     <input
                         type="file"
@@ -825,8 +1203,8 @@ nav a:hover{
 
                 </div>
 
-
             </div>
+
 
 
             <div class="input-actions">
@@ -848,12 +1226,16 @@ nav a:hover{
                     ↩ Reset
                 </button>
 
-
             </div>
 
 
         </form>
 
+
+
+        <!-- =========================
+             LIST ADMIN
+        ========================= -->
 
         <div class="admin-list">
 
@@ -863,10 +1245,13 @@ nav a:hover{
             </h3>
 
 
-            <div id="adminActivityList"></div>
+            <div
+                id="adminActivityList"
+            ></div>
 
 
         </div>
+
 
 
         <div style="text-align:center">
@@ -889,11 +1274,252 @@ nav a:hover{
 </section>
 
 
+
 <script>
 
 
+/* =========================
+   LOGIN ADMIN
+========================= */
+
+const ADMIN_PASSWORD = "PKL2026";
+
+const ADMIN_SESSION_KEY =
+    "dokumentasiPKL2026_admin_login";
+
+
+function checkAdminLogin(){
+
+    const loginBox =
+        document.getElementById(
+            "adminLogin"
+        );
+
+
+    if(
+        sessionStorage.getItem(
+            ADMIN_SESSION_KEY
+        ) === "true"
+    ){
+
+        loginBox.style.display =
+            "none";
+
+    }else{
+
+        loginBox.style.display =
+            "flex";
+
+    }
+
+}
+
+
+
+function togglePasswordVisibility(){
+
+    const passwordInput =
+        document.getElementById(
+            "adminPassword"
+        );
+
+
+    const toggleButton =
+        document.getElementById(
+            "togglePassword"
+        );
+
+
+    if(
+        passwordInput.type ===
+        "password"
+    ){
+
+        passwordInput.type =
+            "text";
+
+
+        toggleButton.textContent =
+            "🙈";
+
+
+        toggleButton.setAttribute(
+            "aria-label",
+            "Sembunyikan sandi"
+        );
+
+
+        toggleButton.setAttribute(
+            "title",
+            "Sembunyikan sandi"
+        );
+
+    }else{
+
+        passwordInput.type =
+            "password";
+
+
+        toggleButton.textContent =
+            "👁️";
+
+
+        toggleButton.setAttribute(
+            "aria-label",
+            "Tampilkan sandi"
+        );
+
+
+        toggleButton.setAttribute(
+            "title",
+            "Tampilkan sandi"
+        );
+
+    }
+
+}
+
+
+
+function loginAdmin(){
+
+    const password =
+        document.getElementById(
+            "adminPassword"
+        ).value;
+
+
+    const error =
+        document.getElementById(
+            "loginError"
+        );
+
+
+    if(
+        password ===
+        ADMIN_PASSWORD
+    ){
+
+        sessionStorage.setItem(
+            ADMIN_SESSION_KEY,
+            "true"
+        );
+
+
+        document.getElementById(
+            "adminLogin"
+        ).style.display =
+            "none";
+
+
+        document.getElementById(
+            "adminPassword"
+        ).value =
+            "";
+
+
+        document.getElementById(
+            "adminPassword"
+        ).type =
+            "password";
+
+
+        document.getElementById(
+            "togglePassword"
+        ).textContent =
+            "👁️";
+
+
+        error.textContent = "";
+
+    }else{
+
+        error.textContent =
+            "❌ Sandi salah. Silakan coba lagi.";
+
+
+        document.getElementById(
+            "adminPassword"
+        ).value = "";
+
+    }
+
+}
+
+
+
+function logoutAdmin(){
+
+    sessionStorage.removeItem(
+        ADMIN_SESSION_KEY
+    );
+
+
+    document.getElementById(
+        "adminLogin"
+    ).style.display =
+        "flex";
+
+
+    document.getElementById(
+        "adminPassword"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "adminPassword"
+    ).type =
+        "password";
+
+
+    document.getElementById(
+        "togglePassword"
+    ).textContent =
+        "👁️";
+
+
+    document.getElementById(
+        "loginError"
+    ).textContent =
+        "";
+
+}
+
+
+
+document
+.getElementById(
+    "adminPassword"
+)
+.addEventListener(
+    "keydown",
+    function(e){
+
+        if(
+            e.key === "Enter"
+        ){
+
+            loginAdmin();
+
+        }
+
+    }
+);
+
+
+
+checkAdminLogin();
+
+
+
+/* =========================
+   LOCAL STORAGE
+========================= */
+
 const STORAGE_KEY =
     "dokumentasiPKL2026_admin";
+
 
 
 function getSavedActivities(){
@@ -915,6 +1541,7 @@ function getSavedActivities(){
 }
 
 
+
 function saveActivities(data){
 
     localStorage.setItem(
@@ -925,10 +1552,16 @@ function saveActivities(data){
 }
 
 
+
+/* =========================
+   FORMAT TANGGAL
+========================= */
+
 function formatDate(dateString){
 
     return new Date(
-        dateString+"T00:00:00"
+        dateString +
+        "T00:00:00"
     ).toLocaleDateString(
         "id-ID",
         {
@@ -941,17 +1574,32 @@ function formatDate(dateString){
 }
 
 
+
+/* =========================
+   AMANKAN HTML
+========================= */
+
 function escapeHtml(text){
 
     const div =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
-    div.textContent=text;
+
+    div.textContent =
+        text;
+
 
     return div.innerHTML;
 
 }
 
+
+
+/* =========================
+   RESIZE FOTO
+========================= */
 
 function resizeImage(file){
 
@@ -962,91 +1610,117 @@ function resizeImage(file){
                 new FileReader();
 
 
-            reader.onload=e=>{
+            reader.onload =
+                e=>{
 
-                const img =
-                    new Image();
-
-
-                img.onload=()=>{
-
-                    const max=1200;
-
-                    let width=img.width;
-
-                    let height=img.height;
+                    const img =
+                        new Image();
 
 
-                    if(
-                        width>max ||
-                        height>max
-                    ){
+                    img.onload =
+                        ()=>{
 
-                        const ratio =
-                            Math.min(
-                                max/width,
-                                max/height
+                            const max =
+                                1200;
+
+
+                            let width =
+                                img.width;
+
+
+                            let height =
+                                img.height;
+
+
+                            if(
+                                width > max ||
+                                height > max
+                            ){
+
+                                const ratio =
+                                    Math.min(
+                                        max / width,
+                                        max / height
+                                    );
+
+
+                                width *=
+                                    ratio;
+
+
+                                height *=
+                                    ratio;
+
+                            }
+
+
+                            const canvas =
+                                document.createElement(
+                                    "canvas"
+                                );
+
+
+                            canvas.width =
+                                width;
+
+
+                            canvas.height =
+                                height;
+
+
+                            const ctx =
+                                canvas.getContext(
+                                    "2d"
+                                );
+
+
+                            ctx.drawImage(
+                                img,
+                                0,
+                                0,
+                                width,
+                                height
                             );
 
-                        width*=ratio;
 
-                        height*=ratio;
+                            resolve(
+                                canvas.toDataURL(
+                                    "image/jpeg",
+                                    .78
+                                )
+                            );
 
-                    }
-
-
-                    const canvas =
-                        document.createElement(
-                            "canvas"
-                        );
+                        };
 
 
-                    canvas.width=width;
-
-                    canvas.height=height;
-
-
-                    const ctx =
-                        canvas.getContext(
-                            "2d"
-                        );
+                    img.onerror =
+                        reject;
 
 
-                    ctx.drawImage(
-                        img,
-                        0,
-                        0,
-                        width,
-                        height
-                    );
-
-
-                    resolve(
-                        canvas.toDataURL(
-                            "image/jpeg",
-                            .78
-                        )
-                    );
+                    img.src =
+                        e.target.result;
 
                 };
 
 
-                img.onerror=reject;
-
-                img.src=e.target.result;
-
-            };
+            reader.onerror =
+                reject;
 
 
-            reader.onerror=reject;
-
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(
+                file
+            );
 
         }
     );
 
 }
 
+
+
+/* =========================
+   SIMPAN KEGIATAN
+========================= */
 
 document
 .getElementById(
@@ -1094,6 +1768,7 @@ document
                 "Lengkapi semua data terlebih dahulu."
             );
 
+
             return;
 
         }
@@ -1124,7 +1799,9 @@ document
             });
 
 
-            saveActivities(data);
+            saveActivities(
+                data
+            );
 
 
             resetAdminForm();
@@ -1150,6 +1827,11 @@ document
 );
 
 
+
+/* =========================
+   RESET FORM
+========================= */
+
 function resetAdminForm(){
 
     document
@@ -1160,6 +1842,11 @@ function resetAdminForm(){
 
 }
 
+
+
+/* =========================
+   TAMPILKAN DATA ADMIN
+========================= */
 
 function renderAdminList(){
 
@@ -1173,17 +1860,21 @@ function renderAdminList(){
         getSavedActivities();
 
 
-    if(!data.length){
+    if(
+        !data.length
+    ){
 
         container.innerHTML =
             '<p style="color:#777;text-align:center;margin-top:15px">Belum ada kegiatan tambahan.</p>';
+
 
         return;
 
     }
 
 
-    container.innerHTML="";
+    container.innerHTML =
+        "";
 
 
     data.forEach(
@@ -1229,13 +1920,24 @@ function renderAdminList(){
 }
 
 
+
+/* =========================
+   HAPUS KEGIATAN
+========================= */
+
 function deleteActivity(index){
 
     const data =
         getSavedActivities();
 
 
-    if(!data[index]) return;
+    if(
+        !data[index]
+    ){
+
+        return;
+
+    }
 
 
     if(
@@ -1244,15 +1946,23 @@ function deleteActivity(index){
         )
     ){
 
-        data.splice(index,1);
+        data.splice(
+            index,
+            1
+        );
 
-        saveActivities(data);
+
+        saveActivities(
+            data
+        );
+
 
         renderAdminList();
 
     }
 
 }
+
 
 
 renderAdminList();

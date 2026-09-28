@@ -1185,7 +1185,7 @@ Dokumentasi kegiatan Praktik Kerja Lapangan selama berada di PT. Telkom Cabang B
 <div class="hero-stats">
 
 <div class="stat">
-<span class="stat-number">10</span>
+<span class="stat-number">18</span>
 <span class="stat-label">Anggota PKL</span>
 </div>
 
@@ -1276,7 +1276,7 @@ Dokumentasi kegiatan Praktik Kerja Lapangan selama berada di PT. Telkom Cabang B
 
 <div class="month-filter">
 
-<select id="monthFilter" onchange="renderActivities">
+<select id="monthFilter" onchange="renderActivities()">
 
 <option value="semua">Semua Bulan</option>
 <option value="juli">Juli 2026</option>
@@ -1479,6 +1479,86 @@ major:"Teknik komputer jaringan (TKJ)",
 year:"2026",
 status:"Peserta PKL",
 photo:"img/d75b1d96-b900-49fc-a1a2-3d6f22f47488.jpg"
+},
+
+{
+name:"Nama Anggota 11",
+school:"Nama Sekolah",
+className:"XII",
+major:"Jurusan",
+year:"2026",
+status:"Peserta PKL",
+photo:"img/foto-anggota-11.jpg"
+},
+
+{
+name:"Nama Anggota 12",
+school:"Nama Sekolah",
+className:"XII",
+major:"Jurusan",
+year:"2026",
+status:"Peserta PKL",
+photo:"img/foto-anggota-12.jpg"
+},
+
+{
+name:"Nama Anggota 13",
+school:"Nama Sekolah",
+className:"XII",
+major:"Jurusan",
+year:"2026",
+status:"Peserta PKL",
+photo:"img/foto-anggota-13.jpg"
+},
+
+{
+name:"Nama Anggota 14",
+school:"Nama Sekolah",
+className:"XII",
+major:"Jurusan",
+year:"2026",
+status:"Peserta PKL",
+photo:"img/foto-anggota-14.jpg"
+},
+
+{
+name:"Nama Anggota 15",
+school:"Nama Sekolah",
+className:"XII",
+major:"Jurusan",
+year:"2026",
+status:"Peserta PKL",
+photo:"img/foto-anggota-15.jpg"
+},
+
+{
+name:"Nama Anggota 16",
+school:"Nama Sekolah",
+className:"XII",
+major:"Jurusan",
+year:"2026",
+status:"Peserta PKL",
+photo:"img/foto-anggota-16.jpg"
+},
+
+{
+name:"Nama Anggota 17",
+school:"Nama Sekolah",
+className:"XII",
+major:"Jurusan",
+year:"2026",
+status:"Peserta PKL",
+photo:"img/foto-anggota-17.jpg"
+},
+
+{
+name:"Nama Anggota 18",
+school:"Nama Sekolah",
+className:"XII",
+major:"Jurusan",
+year:"2026",
+status:"Peserta PKL",
+photo:"img/foto-anggota-18.jpg"
 }
 
 ];
@@ -1541,11 +1621,24 @@ function formatDate(d){
 }
 
 function getMonth(d){
-    return new Date(d+"T00:00:00")
-    .toLocaleDateString("id-ID",{
-        month:"long"
-    })
-    .toLowerCase();
+    const monthNames=[
+        "januari",
+        "februari",
+        "maret",
+        "april",
+        "mei",
+        "juni",
+        "juli",
+        "agustus",
+        "september",
+        "oktober",
+        "november",
+        "desember"
+    ];
+
+    const month=new Date(d+"T00:00:00").getMonth();
+
+    return monthNames[month];
 }
 
 function getSavedActivities(){
@@ -1717,4 +1810,3 @@ renderActivities();
 
 </body>
 </html>
-```
